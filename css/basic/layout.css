@@ -1,0 +1,12 @@
+
+.main-layout>* {
+    /* flex-direction: row; */
+    justify-content:space-between;
+}
+
+.main-layout {
+    flex-direction: column;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: center;
+}

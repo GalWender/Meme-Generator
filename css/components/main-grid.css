@@ -1,0 +1,21 @@
+.grid-container { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(154px, 1fr));
+    gap: 5px;
+    margin: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.img { 
+    cursor: pointer;
+    object-fit: scale-down;
+    width: 100%;
+    min-height: 160px;
+}
+
+.main-content {
+    margin-top: 55px;
+    background-color: #e3e3e3;
+}

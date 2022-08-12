@@ -55,8 +55,67 @@
         object-fit: contain;
         min-height: 275px;
     }
+
+    /* ...................... */
+
+    .meme-editor-modal {
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+
+    .meme-controls {
+        width: 60%;
+        justify-content: flex-start;
+        margin-top: 30px ;
+    }
+
+    .meme-canvas-container {
+
+    }
+
+    .meme {
+        display: flex;
+        margin-top: 30px;
+        margin-inline-start: 50px;
+    }
+
+    .meme-canvas-container {
+        margin: 0;
+        height: 400px;
+        width: 400px;
+
+    }
+
+    .btn {
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+      }
+      
+      .meme-controls div img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .grid-container-controls {
+        grid-template-columns: repeat(5, 60px);
+        grid-template-rows: repeat(5, 60px);
+        
+        gap: 20px;
+      
+      }
+
+
 }
+
 
 /* DESKTOP */
 
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+    /* .meme-canvas-container {
+        margin: 0;
+        height: 500px;
+        width: 500px;
+    } */
+}

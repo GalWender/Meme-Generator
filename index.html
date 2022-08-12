@@ -9,13 +9,13 @@
     <title>Meme Generator</title>
 </head>
 
-<body>
+<body onload="init()">
     <header class="main-header main-layout flex">
         <div class="main-header-container flex align-center space-between">
             <img class="logo" src="img/LOGO/LOGO.png" alt="">
             <nav class="main-nav flex">
                 <ul class="main-nav-list flex clean-list">
-                    <li><a class="flex align-center justify-center" href="#">Gallery</a></li>
+                    <li><a class="flex align-center justify-center" onclick="toGallery()" href="">Gallery</a></li>
                     <li><a class="flex align-center justify-center" href="#">Memes</a></li>
                     <li><a class="flex align-center justify-center" href="#">About</a></li>
                 </ul>
@@ -24,29 +24,52 @@
         </div>
     </header>
     <main class="main-content flex flex-direction-column">
+        <div class="meme-editor-modal flex">
+            <section class="meme">
+                <div class="meme-canvas-container">
+                    <canvas id="canvas"></canvas>
+                </div>
+            </section>
+            <section class="meme-controls flex flex-direction-column align-center">
+                <form class="text-input-form" onsubmit="stopRefresh(event)">
+                <input oninput="onRenderInputText(event,this)" id="text-input" type="text" name="text-input"
+                    class="text-input" placeholder="Top Text">
+                </form>
+                <div class="grid-container-controls">
+                    <div onclick="onSwichLine()" class="btn switch-line"><img
+                            src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></div>
+                    <div onclick="onAddLine()" class="btn add-line"><img src="img/ICONS/add.png" alt=""></div>
+                    <div class="btn clear"><img src="img/ICONS/trash.png" alt=""></div>
+                    <div onclick="onIncreaseFont()" class="btn aPlus"><img src="img/ICONS/increase font - icon.png" alt=""></div>
+                    <div onclick="onDecreaseFont()" class="btn aMinus"><img src="img/ICONS/decrease font - icon.png" alt=""></div>
+                    <div class="btn align-left"><img src="img/ICONS/align-to-left.png" alt=""></div>
+                    <div class="btn align-center"><img src="img/ICONS/center-text-alignment.png" alt=""></div>
+                    <div class="btn align-right"><img src="img/ICONS/align-to-right.png" alt=""></div>
+                    <div class="btn font"></div>
+                    <select class="font" onchange="onSetFont(event,this.value)">
+                        <option value="impact">Impact</option>
+                        <option value="monospace">Monospace</option>
+                    </select>
+                    <div onchange="onChangeStroke()" class="btn stroke">
+                        <img class="stroke-background-img" src="img/ICONS/text stroke.png" alt="">
+                        <input type="color" name="stroke-color" class="btn stroke-color">
+                    </div>
+                    <div onchange="onChangeFill()" class="btn fill">
+                        <img class="fill-background-img" src="img/ICONS/paint-board-and-brush.png" alt="">
+                        <input type="color" name="fill-color" class="btn fill-color">
+                    </div>
+                    <div class="btn emojis"></div>
+                </div>
+            </section>
+        </div>
         <div class="gallery-container grid-container">
-            <img class="img img1" src="img/meme-imgs (square)/1.jpg" alt="">
-            <img class="img img2" src="img/meme-imgs (square)/2.jpg" alt="">
-            <img class="img img3" src="img/meme-imgs (square)/3.jpg" alt="">
-            <img class="img img4" src="img/meme-imgs (square)/4.jpg" alt="">
-            <img class="img img5" src="img/meme-imgs (square)/5.jpg" alt="">
-            <img class="img img6" src="img/meme-imgs (square)/6.jpg" alt="">
-            <img class="img img7" src="img/meme-imgs (square)/7.jpg" alt="">
-            <img class="img img8" src="img/meme-imgs (square)/8.jpg" alt="">
-            <img class="img img9" src="img/meme-imgs (square)/9.jpg" alt="">
-            <img class="img img10" src="img/meme-imgs (square)/10.jpg" alt="">
-            <img class="img img11" src="img/meme-imgs (square)/11.jpg" alt="">
-            <img class="img img12" src="img/meme-imgs (square)/12.jpg" alt="">
-            <img class="img img13" src="img/meme-imgs (square)/13.jpg" alt="">
-            <img class="img img14" src="img/meme-imgs (square)/14.jpg" alt="">
-            <img class="img img15" src="img/meme-imgs (square)/15.jpg" alt="">
-            <img class="img img16" src="img/meme-imgs (square)/16.jpg" alt="">
-            <img class="img img17" src="img/meme-imgs (square)/17.jpg" alt="">
-            <img class="img img18" src="img/meme-imgs (square)/18.jpg" alt="">
         </div>
     </main>
-
-    <script src="js/meme.controler.js"></script>
+    
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/services/util.service.js"></script>
+    <script src="js/gallery.controller.js"></script>
+    <script src="js/meme.controller.js"></script>
 </body>
 
 </html>

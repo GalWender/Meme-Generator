@@ -10,7 +10,6 @@ function init() {
     gElCanvas = document.querySelector('#canvas');
     gCtx = gElCanvas.getContext('2d');
     // console.log(gCtx.font)
-    window.addEventListener("resize", resizeCanvas())
     gStartPos = { x: gElCanvas.width / 2, y: gElCanvas.height / 5 }
 }
 
@@ -28,15 +27,15 @@ function addTouchListeners() {
 }
 
 function onDown(ev) {
-
+    
 }
 
 function onMove(ev) {
-
+    
 }
 
 function onUp() {
-
+    
 }
 
 
@@ -60,6 +59,7 @@ function renderMeme() {
         meme.lines[meme.selectedLineIdx].lineHeight = measureLineHeight()
         drawRect(meme.lines[meme.selectedLineIdx].pos.x - meme.lines[meme.selectedLineIdx].lineWidth / 2, meme.lines[meme.selectedLineIdx].pos.y - meme.lines[meme.selectedLineIdx].lineHeight + 10, meme.lines[meme.selectedLineIdx].lineWidth, meme.lines[meme.selectedLineIdx].lineHeight)
     }
+    window.addEventListener("resize", resizeCanvas())
 }
 
 function onRenderInputText() {

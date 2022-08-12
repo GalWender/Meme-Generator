@@ -61,13 +61,6 @@ function renderMeme() {
     }
 }
 
-// function renderMeme() {
-//     let meme = getMeme()
-//     if(!meme) return
-//     drawImg(meme.selectedImgId)
-//     // drawText()
-// }
-
 function onRenderInputText() {
     const elInput = document.querySelector('[name="text-input"]')
     const lineWidth = gCtx.measureText(elInput).width

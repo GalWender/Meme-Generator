@@ -29,3 +29,12 @@ function toGallery(){
     elmodal.classList.remove('open')
     elbody.style.overflow = 'none'
 }
+
+function onSearchByKeywords() {
+
+}
+
+function onFlexible() {
+    flexible()
+    renderMeme()
+}

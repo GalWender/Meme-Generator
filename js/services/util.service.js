@@ -6,7 +6,7 @@ function drawImg(idx) {
 }
 
 function drawText(text, x, y, colorFill, colorStroke, font, size, align) {
-    gCtx.beginPath();
+    // gCtx.beginPath();
     gCtx.lineWidth = 3;
     gCtx.strokeStyle = colorStroke;
     gCtx.fillStyle = colorFill;
@@ -23,6 +23,7 @@ function drawRect(x, y, width, height) {
     // gCtx.setLineDash([4, 2]);
     gCtx.strokeStyle = 'gray';
     gCtx.stroke();
+    gCtx.closePath()
 }
 
 function clearCanvas() {
@@ -131,4 +132,8 @@ function drawBorder(x, y, xEnd, yEnd) {
     gCtx.closePath();
 
     //doesn't work :(
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min) + min)
 }

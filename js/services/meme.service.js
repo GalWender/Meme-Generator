@@ -38,7 +38,8 @@ let gMeme = {
             font: 'impact',
             pos:null,
             isDragging:false,
-            lineWidth:0
+            lineWidth:0,
+            lineHeight:0
         }]
 }
 
@@ -126,15 +127,16 @@ function switchLine() {
 }
 
 function measureLineWidth() {
-    gCtx.font = gMeme.lines[gMeme.selectedLineIdx].font
-    const txtWidth = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt)
+    gCtx.font =`${gMeme.lines[gMeme.selectedLineIdx].size}px ${gMeme.lines[gMeme.selectedLineIdx].font}`
+    let txtWidth = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt)
     console.log(txtWidth.width)
     return txtWidth.width + 20
 }
 
 function measureLineHeight() {
-    gCtx.font = gMeme.lines[gMeme.selectedLineIdx].font
-    const txtHeight = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt)
+    gCtx.font =`${gMeme.lines[gMeme.selectedLineIdx].size}px ${gMeme.lines[gMeme.selectedLineIdx].font}`
+    let txtHeight = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt)
+    console.log(gCtx.font)
     console.log(txtHeight.fontBoundingBoxAscent - txtHeight.fontBoundingBoxDescent)
     return (txtHeight.fontBoundingBoxAscent - txtHeight.fontBoundingBoxDescent) + 20
 }

@@ -15,8 +15,8 @@
             <img class="logo" src="img/LOGO/LOGO.png" alt="">
             <nav class="main-nav flex">
                 <ul class="main-nav-list flex clean-list">
-                    <li><a class="flex align-center justify-center" onclick="toGallery()" href="">Gallery</a></li>
-                    <li><a class="flex align-center justify-center" href="#">Memes</a></li>
+                    <li><a class="flex align-center justify-center" onclick="toGallery()">Gallery</a></li>
+                    <li><a class="flex align-center justify-center" onclick="toSavedMemes()">Memes</a></li>
                     <li><a class="flex align-center justify-center" href="#">About</a></li>
                 </ul>
             </nav>
@@ -30,7 +30,10 @@
             <!--  -->
             <button class="btn flexible" onclick="onFlexible()">Im Flexible</button>
         </section>
-        <div class="meme-editor-modal flex">
+        <div class="saved-memes-tab-modal hidden">
+
+        </div>
+        <div class="meme-editor-modal flex hidden">
             <section class="meme">
                 <div class="meme-canvas-container">
                     <canvas id="canvas"></canvas>
@@ -65,16 +68,20 @@
                         <input type="color" name="fill-color" class="btn fill-color">
                     </div>
                     <div class="btn emojis"></div>
+                    <button onclick="saveMemesToStorage()">Save</button>
                 </div>
             </section>
         </div>
         <div class="gallery-container grid-container">
         </div>
     </main>
+    <script src="js/services/memesTab.service.js"></script>
+    <script src="js/services/upload-service.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/gallery.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/services/util.service.js"></script>
+    <script src="js/memesTab.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
 </body>

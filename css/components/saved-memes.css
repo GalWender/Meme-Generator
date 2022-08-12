@@ -1,0 +1,17 @@
+.saved-memes-tab-modal {
+    flex-direction: column;
+    background-color: #e3e3e3;
+    position: absolute;
+    z-index: 1;
+    top: 55px;
+    right: 0;
+    /* left: 150%; */
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.saved-memes-tab-modal.open {
+    left: 0;
+    transition: left .5s;
+}

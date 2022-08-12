@@ -79,6 +79,7 @@ function createLine() {
 }
 
 function setImg(elImg) {
+    console.log(+elImg.id)
     gMeme.selectedImgId = +elImg.id
 }
 
@@ -114,7 +115,6 @@ function addLine() {
     let line = createLine()
     gMeme.lines.push(line)
     elInput.value = gMeme.lines[gMeme.selectedLineIdx].txt
-    // focusCurrText(line)
 }
 
 function switchLine() {
@@ -141,6 +141,21 @@ function measureLineHeight() {
     return (txtHeight.fontBoundingBoxAscent - txtHeight.fontBoundingBoxDescent) + 20
 }
 
-function focusCurrText() {
 
+function saveMemesToStorage() {
+    const data = gElCanvas.toDataURL()
+    let memes = loadFromStorage('memes')
+    if(memes){
+        memes.push(data)
+        saveToStorage('meme',memes)
+    }
+    else{
+    saveToStorage('memes',[data])
+    }
+}
+
+function downloadCanvas(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my-canvas';
 }

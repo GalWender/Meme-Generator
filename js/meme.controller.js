@@ -44,6 +44,7 @@ function onUp() {
 
 //gets meme and 
 function renderMeme() {
+    console.log('in')
     let img = new Image()
     let meme = getMeme()
     if (!meme) return
@@ -107,6 +108,5 @@ function onSwichLine() {
     renderMeme()
 }
 
-function onFocusCurrText() {
 
-}
+

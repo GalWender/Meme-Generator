@@ -34,11 +34,11 @@ function addTouchListeners() {
 
 function onDown(ev) {
     const pos = getEvPos(ev)
-    // { x: 15, y : 15 }
-    if (!isClicked(pos)) return
+    checkSelectedLineClick(pos)
+    if (!isClicked(pos,gMeme.selectedLineIdx)) return
     setDrag(true)
     gStartPos = pos
-    document.body.style.cursor = 'grabbing'
+    document.body.style.cursor = 'crosshair'
 }
 
 function onMove(ev) {
@@ -49,12 +49,13 @@ function onMove(ev) {
     const dy = pos.y - gStartPos.y
     moveLine(dx, dy)
     gStartPos = pos
+    document.body.style.cursor = 'crosshair'
     renderMeme()
 }
 
 function onUp() {
     setDrag(false)
-    document.body.style.cursor = 'grab'
+    document.body.style.cursor = 'auto'
 }
 
 
@@ -74,7 +75,7 @@ function renderMeme() {
         gMeme.lines.forEach((line) => drawText(line.txt, line.pos.x, line.pos.y, line.fill, line.stroke, line.font, line.size, line.align))
         gMeme.lines[gMeme.selectedLineIdx].lineWidth = measureLineWidth()
         gMeme.lines[gMeme.selectedLineIdx].lineHeight = measureLineHeight()
-        drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].lineWidth / 2)-20, gMeme.lines[gMeme.selectedLineIdx].pos.y - gMeme.lines[gMeme.selectedLineIdx].lineHeight /2-30, gMeme.lines[gMeme.selectedLineIdx].lineWidth +30, gMeme.lines[gMeme.selectedLineIdx].lineHeight+30)
+        drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].lineWidth / 2)-15, gMeme.lines[gMeme.selectedLineIdx].pos.y - gMeme.lines[gMeme.selectedLineIdx].lineHeight / 2 - 30, gMeme.lines[gMeme.selectedLineIdx].lineWidth + 30, gMeme.lines[gMeme.selectedLineIdx].lineHeight + 30)
     }
 }
 

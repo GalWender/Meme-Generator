@@ -202,9 +202,9 @@ function gmemeReset() {
     }]
 }
 //............
-function isClicked(clickedPos) {
-    const pos = gMeme.lines[gMeme.selectedLineIdx].pos
-    let { lineWidth, lineHeight } = gMeme.lines[gMeme.selectedLineIdx]
+function isClicked(clickedPos,lineIdx) {
+    const pos = gMeme.lines[lineIdx].pos
+    let { lineWidth, lineHeight } = gMeme.lines[lineIdx]
     lineWidth = lineWidth / 2
     lineHeight = lineHeight / 2
     if (clickedPos.x >= pos.x - lineWidth && clickedPos.x <= pos.x + lineWidth && clickedPos.y >= pos.y - lineHeight && clickedPos.y <= pos.y + lineHeight) {
@@ -220,4 +220,12 @@ function setDrag(isDrag) {
 function moveLine(dx, dy) {
     gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
     gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
+}
+
+function checkSelectedLineClick(pos){
+    gMeme.lines.forEach((line,idx) => {
+        if(isClicked(pos,idx)){
+            gMeme.selectedLineIdx = idx
+        }
+    })
 }

@@ -4,12 +4,12 @@ const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 let gElCanvas
 let gCtx
 let gStartPos
+let gSavedEdits = []
 
 function init() {
     renderGallery()
     gElCanvas = document.querySelector('#canvas');
     gCtx = gElCanvas.getContext('2d');
-    // console.log(gCtx.font)
     gStartPos = { x: gElCanvas.width / 2, y: gElCanvas.height / 5 }
 }
 
@@ -27,15 +27,15 @@ function addTouchListeners() {
 }
 
 function onDown(ev) {
-    
+
 }
 
 function onMove(ev) {
-    
+
 }
 
 function onUp() {
-    
+
 }
 
 
@@ -43,21 +43,20 @@ function onUp() {
 
 //gets meme and 
 function renderMeme() {
-    console.log('in')
     let img = new Image()
     let meme = getMeme()
     if (!meme) return
+    console.log('gmeme from render',gMeme)
     img.src = gImgs.find(obj => obj.id === meme.selectedImgId).url
     if (gMeme.lines[gMeme.selectedLineIdx].pos === null) {
-        // gMeme.lines[gMeme.selectedLineIdx].size = 50
         gMeme.lines[gMeme.selectedLineIdx].pos = { x: gElCanvas.width / 2, y: gElCanvas.height / 5 }
     }
     img.onload = () => {
-        drawImg(meme.selectedImgId) //img,x,y,xend,yend
-        meme.lines.forEach((line) => drawText(line.txt, line.pos.x, line.pos.y, line.fill, line.stroke, line.font, line.size, line.align))
-        meme.lines[meme.selectedLineIdx].lineWidth = measureLineWidth()
-        meme.lines[meme.selectedLineIdx].lineHeight = measureLineHeight()
-        drawRect(meme.lines[meme.selectedLineIdx].pos.x - meme.lines[meme.selectedLineIdx].lineWidth / 2, meme.lines[meme.selectedLineIdx].pos.y - meme.lines[meme.selectedLineIdx].lineHeight + 10, meme.lines[meme.selectedLineIdx].lineWidth, meme.lines[meme.selectedLineIdx].lineHeight)
+        drawImg(gMeme.selectedImgId) //img,x,y,xend,yend
+        gMeme.lines.forEach((line) => drawText(line.txt, line.pos.x, line.pos.y, line.fill, line.stroke, line.font, line.size, line.align))
+        gMeme.lines[gMeme.selectedLineIdx].lineWidth = measureLineWidth()
+        gMeme.lines[gMeme.selectedLineIdx].lineHeight = measureLineHeight()
+        drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - gMeme.lines[gMeme.selectedLineIdx].lineWidth / 2, gMeme.lines[gMeme.selectedLineIdx].pos.y - gMeme.lines[gMeme.selectedLineIdx].lineHeight + 10, gMeme.lines[gMeme.selectedLineIdx].lineWidth, gMeme.lines[gMeme.selectedLineIdx].lineHeight)
     }
     window.addEventListener("resize", resizeCanvas())
 }

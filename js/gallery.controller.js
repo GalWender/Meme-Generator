@@ -12,29 +12,33 @@ function renderGallery() {
 }
 
 function onImgSelect(elImg) {
-    // console.log(elImg)
+    console.log('gmeme',gMeme)
+    gmemeReset()
     setImg(elImg)
     const elmodalEditor = document.querySelector('.meme-editor-modal')
-    const elbody = document.querySelector('body')
     const elGallery = document.querySelector('.gallery-container')
     const elmodalSaved = document.querySelector('.saved-memes-tab-modal')
     elmodalEditor.classList.remove('hidden')
     renderMeme()
-    // window.scrollTo(0,0)
-    // elbody.style.overflow = 'none'
+    let elInput = document.querySelector('[name="text-input"]')
+    // elInput.value = gMeme.lines[gMeme.selectedLineIdx].txt
     elGallery.classList.add('hidden')
     elmodalSaved.classList.add('hidden')
+    console.log('gmeme',gMeme)
 }
 
 function toGallery(){
-    gCurrLine=0
+    console.log('gmeme',gMeme)
+    gmemeReset()
+    const elInput = document.querySelector('[name="text-input"]')
+    elInput.value = ''
     const elmodalEditor = document.querySelector('.meme-editor-modal')
-    const elbody = document.querySelector('body')
     const elGallery = document.querySelector('.gallery-container')
     const elmodalSaved = document.querySelector('.saved-memes-tab-modal')
     elGallery.classList.remove('hidden')
     elmodalEditor.classList.add('hidden')
     elmodalSaved.classList.add('hidden')
+    console.log('gmeme',gMeme)
 }
 
 function onSearchByKeywords() {

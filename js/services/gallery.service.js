@@ -6,7 +6,6 @@ function searchByKeywords() {
 }
 
 function flexible() {
-    // debugger
     setImg(getRandomImg())
     const elmodal = document.querySelector('.meme-editor-modal')
     const elbody = document.querySelector('body')
@@ -17,16 +16,6 @@ function flexible() {
     window.scrollTo(0,0)
     elbody.style.overflow = 'hidden'
 }
-
-// function onImgSelect(elImg) {
-//     setImg(elImg)
-//     const elmodal = document.querySelector('.meme-editor-modal')
-//     const elbody = document.querySelector('body')
-//     elmodal.classList.add('open')
-//     renderMeme()
-//     window.scrollTo(0,0)
-//     elbody.style.overflow = 'hidden'
-// }
 
 function makeRandomLineText() {
     let idx = getRandomInt(0,16)

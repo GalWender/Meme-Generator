@@ -6,6 +6,7 @@ body {
     margin: 0;
     height: 100vh;
     overflow-x: hidden;
+    background-color: #e3e3e3;
 }
 
 a {

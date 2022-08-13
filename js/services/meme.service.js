@@ -36,15 +36,15 @@ let gMeme = {
             stroke: 'black',
             fill: 'white',
             font: 'impact',
-            pos:null,
-            isDragging:false,
-            lineWidth:0,
-            lineHeight:0
+            pos: null,
+            isDragging: false,
+            lineWidth: 0,
+            lineHeight: 0
         }]
 }
 
 
-function setLineText(currStr,lineWidth) {
+function setLineText(currStr, lineWidth) {
     gMeme.lines[gMeme.selectedLineIdx].txt = currStr
     gMeme.lines[gMeme.selectedLineIdx].lineWidth = lineWidth
 }
@@ -63,7 +63,6 @@ function getCurrLine() {
 }
 
 function createLine() {
-    // let canvas = document.getElementById('canvas');
     return {
         txt: 'New Line',
         size: 50,
@@ -73,13 +72,12 @@ function createLine() {
         font: 'Impact',
         pos: { x: (gElCanvas.width / 2), y: (gElCanvas.height) },
         isDragging: false,
-        lineWidth:0,
-        lineHeight:0
+        lineWidth: 0,
+        lineHeight: 0
     }
 }
 
 function setImg(elImg) {
-    console.log(+elImg.id)
     gMeme.selectedImgId = +elImg.id
 }
 
@@ -119,38 +117,45 @@ function addLine() {
 
 function switchLine() {
     let elInput = document.querySelector('[name="text-input"]')
-    if(gMeme.selectedLineIdx ===0){
-        gMeme.selectedLineIdx=gMeme.lines.length
+    if (gMeme.selectedLineIdx === 0) {
+        gMeme.selectedLineIdx = gMeme.lines.length
     }
     gMeme.selectedLineIdx--
     elInput.value = gMeme.lines[gMeme.selectedLineIdx].txt
 }
 
 function measureLineWidth() {
-    gCtx.font =`${gMeme.lines[gMeme.selectedLineIdx].size}px ${gMeme.lines[gMeme.selectedLineIdx].font}`
+    gCtx.font = `${gMeme.lines[gMeme.selectedLineIdx].size}px ${gMeme.lines[gMeme.selectedLineIdx].font}`
     let txtWidth = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt)
     console.log(txtWidth.width)
     return txtWidth.width + 20
 }
 
 function measureLineHeight() {
-    gCtx.font =`${gMeme.lines[gMeme.selectedLineIdx].size}px ${gMeme.lines[gMeme.selectedLineIdx].font}`
+    gCtx.font = `${gMeme.lines[gMeme.selectedLineIdx].size}px ${gMeme.lines[gMeme.selectedLineIdx].font}`
     let txtHeight = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt)
     console.log(gCtx.font)
     console.log(txtHeight.fontBoundingBoxAscent - txtHeight.fontBoundingBoxDescent)
     return (txtHeight.fontBoundingBoxAscent - txtHeight.fontBoundingBoxDescent) + 20
 }
 
-
 function saveMemesToStorage() {
     const data = gElCanvas.toDataURL()
     let memes = loadFromStorage('memes')
-    if(memes){
+    if (memes) {
         memes.push(data)
-        saveToStorage('meme',memes)
+        saveToStorage('memes', memes)
     }
-    else{
-    saveToStorage('memes',[data])
+    else {
+        saveToStorage('memes', [data])
+    }
+    let memesEdit = loadFromStorage('memesEdit')
+    if (memesEdit) {
+        memesEdit.push(gMeme)
+        saveToStorage('memesEdit', memesEdit)
+    }
+    else {
+        saveToStorage('memesEdit', [gMeme])
     }
 }
 
@@ -158,4 +163,20 @@ function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL();
     elLink.href = data;
     elLink.download = 'my-canvas';
+}
+
+function gmemeReset() {
+    gMeme.selectedLineIdx = 0
+    gMeme.lines = [{
+        txt: 'Top Text',
+        size: 50,
+        align: 'center',
+        stroke: 'black',
+        fill: 'white',
+        font: 'impact',
+        pos: null,
+        isDragging: false,
+        lineWidth: 0,
+        lineHeight: 0
+    }]
 }

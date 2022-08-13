@@ -31,6 +31,9 @@
             <button class="btn flexible" onclick="onFlexible()">Im Flexible</button>
         </section>
         <div class="saved-memes-tab-modal hidden">
+            <div class="saved-memes-grid-container">
+
+            </div>
 
         </div>
         <div class="meme-editor-modal flex hidden">
@@ -42,7 +45,7 @@
             <section class="meme-controls flex flex-direction-column align-center">
                 <form class="text-input-form" onsubmit="stopRefresh(event)">
                 <input oninput="onRenderInputText(event,this)" id="text-input" type="text" name="text-input"
-                    class="text-input" placeholder="Top Text">
+                    class="text-input" placeholder="New Text">
                 </form>
                 <div class="grid-container-controls">
                     <div onclick="onSwichLine()" class="btn switch-line"><img

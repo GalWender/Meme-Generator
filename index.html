@@ -95,6 +95,13 @@
                     <button class="emoji emoji4" onclick="onAddSticker('😁')">😁</button>
                     <button class="emoji emoji5" onclick="onAddSticker('😎')">😎</button>
                     <button class="btn save-meme" onclick="saveMemesToStorage()">Save</button>
+                    <form class="btn btn-share flex align-items justify-content" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                        <input name="img" id="imgData" type="hidden" />
+                        <button class="share-meme share-container clean-list" type="submit">Publish</button>
+                        <!-- <span class="share-container"></span> -->
+                    </form>
+                    <button class="download-meme"><a href="" class="btn download-meme" onclick="downloadCanvas(this)">Download</a></button>
+
                 </div>
             </section>
         </div>

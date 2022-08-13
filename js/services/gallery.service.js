@@ -6,7 +6,7 @@ function searchByKeywords() {
 }
 
 function flexible() {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0)
     setImg(getRandomImg())
     const elmodalEditor = document.querySelector('.meme-editor-modal')
     const elGallery = document.querySelector('.gallery-container')

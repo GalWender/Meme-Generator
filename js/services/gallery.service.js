@@ -6,15 +6,18 @@ function searchByKeywords() {
 }
 
 function flexible() {
+    window.scrollTo(0, 0);
     setImg(getRandomImg())
-    const elmodal = document.querySelector('.meme-editor-modal')
-    const elbody = document.querySelector('body')
-    elmodal.classList.remove('hidden')
+    const elmodalEditor = document.querySelector('.meme-editor-modal')
+    const elGallery = document.querySelector('.gallery-container')
+    const elmodalSaved = document.querySelector('.saved-memes-tab-modal')
+    elmodalEditor.classList.remove('hidden')
     const count = makeRandomLinesCount()
     makeRandomLines(count)
     renderMeme()
-    window.scrollTo(0, 0)
-    elbody.style.overflow = 'hidden'
+    elGallery.classList.add('hidden')
+    elmodalSaved.classList.add('hidden')
+    resizeCanvas()
 }
 
 function makeRandomLineText() {
@@ -28,6 +31,7 @@ function makeRandomLinesCount() {
 
 function getRandomImg() {
     let idx = getRandomInt(1, 19)
+    
     return document.querySelector(`.img${idx}`)
 }
 

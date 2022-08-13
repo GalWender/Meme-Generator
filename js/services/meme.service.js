@@ -1,8 +1,4 @@
 'use strict'
-let gCurrLine = 0;
-
-
-
 
 let gImgs = [
     { id: 1, url: 'img/meme-imgs/1.jpg', keywords: ['politicians', 'angry'] },
@@ -23,7 +19,9 @@ let gImgs = [
     { id: 16, url: 'img/meme-imgs/16.jpg', keywords: ['celeb', 'tv', 'movie', 'happy', 'excited'] },
     { id: 17, url: 'img/meme-imgs/17.jpg', keywords: ['politicians', 'explain'] },
     { id: 18, url: 'img/meme-imgs/18.jpg', keywords: ['tv', 'explain', 'surprised'] },
-];
+]
+
+let gKeywords = mapKeywords(gImgs)
 
 let gMeme = {
     selectedImgId: 5,
@@ -51,15 +49,11 @@ function setLineText(currStr, lineWidth) {
 
 
 function getMeme() {
-    return gMeme;
+    return gMeme
 }
 
 function getImgs() {
-    return gImgs;
-}
-
-function getCurrLine() {
-    return gMeme.lines[gCurrLine];
+    return gImgs
 }
 
 function createLine() {
@@ -181,9 +175,9 @@ function saveMemesToStorage() {
 }
 
 function downloadCanvas(elLink) {
-    const data = gElCanvas.toDataURL();
-    elLink.href = data;
-    elLink.download = 'my-canvas';
+    const data = gElCanvas.toDataURL()
+    elLink.href = data
+    elLink.download = 'my-canvas'
 }
 
 function gmemeReset() {
@@ -201,8 +195,8 @@ function gmemeReset() {
         lineHeight: 0
     }]
 }
-//............
-function isClicked(clickedPos,lineIdx) {
+
+function isClicked(clickedPos, lineIdx) {
     const pos = gMeme.lines[lineIdx].pos
     let { lineWidth, lineHeight } = gMeme.lines[lineIdx]
     lineWidth = lineWidth / 2
@@ -222,11 +216,51 @@ function moveLine(dx, dy) {
     gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
 }
 
-function checkSelectedLineClick(pos){
-    gMeme.lines.forEach((line,idx) => {
-        if(isClicked(pos,idx)){
+function checkSelectedLineClick(pos) {
+    gMeme.lines.forEach((line, idx) => {
+        if (isClicked(pos, idx)) {
             gMeme.selectedLineIdx = idx
         }
     })
 }
+
+function clearLine() {
+    gMeme.lines[gMeme.selectedLineIdx].txt = ''
+}
+
+function addAlign(align) {
+    gMeme.lines[gMeme.selectedLineIdx].align = align
+    switch (align) {
+        case 'center':
+            gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width / 2
+            break
+        case 'left':
+            gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width - 100
+            break
+        case 'right':
+            gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width -240
+            break
+
+    }
+}
+
+function getKeywords() {
+    return gKeywords
+}
+
+function mapKeywords() {
+    var res = gImgs.reduce(function (obj, currObj) {
+        currObj.keywords.forEach(keyword => {
+            if (!obj[keyword]) {
+                obj[keyword] = 1
+            } else {
+                obj[keyword]++
+            }
+        })
+        return obj
+    }, {})
+    return res
+}
+
+
 

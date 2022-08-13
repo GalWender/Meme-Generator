@@ -7,9 +7,10 @@ let gStartPos
 let gSavedEdits = []
 
 function init() {
+    renderKeywords()
     renderGallery()
-    gElCanvas = document.querySelector('#canvas');
-    gCtx = gElCanvas.getContext('2d');
+    gElCanvas = document.querySelector('#canvas')
+    gCtx = gElCanvas.getContext('2d')
     gStartPos = { x: gElCanvas.width / 2, y: gElCanvas.height / 5 }
     addListeners()
 }
@@ -35,14 +36,14 @@ function addTouchListeners() {
 function onDown(ev) {
     const pos = getEvPos(ev)
     checkSelectedLineClick(pos)
-    if (!isClicked(pos,gMeme.selectedLineIdx)) return
+    if (!isClicked(pos, gMeme.selectedLineIdx)) return
     setDrag(true)
     gStartPos = pos
     document.body.style.cursor = 'crosshair'
 }
 
 function onMove(ev) {
-    const line = gMeme.lines[gMeme.selectedLineIdx];
+    const line = gMeme.lines[gMeme.selectedLineIdx]
     if (!line.isDrag) return
     const pos = getEvPos(ev)
     const dx = pos.x - gStartPos.x
@@ -72,10 +73,21 @@ function renderMeme() {
     }
     img.onload = () => {
         drawImg(gMeme.selectedImgId) //img,x,y,xend,yend
-        gMeme.lines.forEach((line) => drawText(line.txt, line.pos.x, line.pos.y, line.fill, line.stroke, line.font, line.size, line.align))
+        gMeme.lines.forEach((line) => drawText(line.txt, line.pos.x, line.pos.y, line.fill, line.stroke, line.font, line.size, 'center'))
         gMeme.lines[gMeme.selectedLineIdx].lineWidth = measureLineWidth()
         gMeme.lines[gMeme.selectedLineIdx].lineHeight = measureLineHeight()
-        drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].lineWidth / 2)-15, gMeme.lines[gMeme.selectedLineIdx].pos.y - gMeme.lines[gMeme.selectedLineIdx].lineHeight / 2 - 30, gMeme.lines[gMeme.selectedLineIdx].lineWidth + 30, gMeme.lines[gMeme.selectedLineIdx].lineHeight + 30)
+        switch (gMeme.lines[gMeme.selectedLineIdx].align) {
+            case 'center':
+                drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].lineWidth / 2) - 15, gMeme.lines[gMeme.selectedLineIdx].pos.y - gMeme.lines[gMeme.selectedLineIdx].lineHeight / 2 - 30, gMeme.lines[gMeme.selectedLineIdx].lineWidth + 30, gMeme.lines[gMeme.selectedLineIdx].lineHeight + 30)
+                break;
+            case 'left':
+                drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].lineWidth / 2) - 20, gMeme.lines[gMeme.selectedLineIdx].pos.y - gMeme.lines[gMeme.selectedLineIdx].lineHeight / 2 - 30, gMeme.lines[gMeme.selectedLineIdx].lineWidth + 30, gMeme.lines[gMeme.selectedLineIdx].lineHeight + 30)
+                break;
+            case 'right':
+                drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].lineWidth / 2) - 15, gMeme.lines[gMeme.selectedLineIdx].pos.y - gMeme.lines[gMeme.selectedLineIdx].lineHeight / 2 - 30, gMeme.lines[gMeme.selectedLineIdx].lineWidth + 30, gMeme.lines[gMeme.selectedLineIdx].lineHeight + 30)
+                break;
+        }
+        
     }
 }
 
@@ -127,6 +139,27 @@ function onAddSticker(stiker) {
 
 function onSwichLine() {
     switchLine()
+    renderMeme()
+}
+
+function onAlignLeft() {
+    addAlign('right')
+    renderMeme()
+}
+
+function onAlignCenter() {
+    addAlign('center')
+    renderMeme()
+}
+
+function onAlignRight() {
+    addAlign('left')
+    renderMeme()
+}
+
+function onTrash() {
+    document.querySelector('[name="text-input"]').value = ''
+    clearLine()
     renderMeme()
 }
 

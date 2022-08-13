@@ -48,6 +48,16 @@
                 </datalist>
             </section>
             <button class="btn flexible" onclick="onFlexible()">Im Flexible</button>
+            <div class="keywords-screen flex">
+                <span class="keyword" onclick="onKeyword(this, 'politicians')">politicians</span>
+                <span class="keyword" onclick="onKeyword(this, 'happy')">happy</span>
+                <span class="keyword" onclick="onKeyword(this, 'sweet')">sweet</span>
+                <span class="keyword" onclick="onKeyword(this, 'animals')">animals</span>
+                <span class="more" onclick="onMore()">more...</span>
+            </div>
+            <section class="more-keywords">
+                <div class="keywords-container flex"></div>
+            </section>
         </section>
         <div class="saved-memes-tab-modal hidden">
             <div class="saved-memes-grid-container">
@@ -68,14 +78,14 @@
                     <div onclick="onSwichLine()" class="btn switch-line"><img
                             src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></div>
                     <div onclick="onAddLine()" class="btn add-line"><img src="img/ICONS/add.png" alt=""></div>
-                    <div class="btn clear"><img src="img/ICONS/trash.png" alt=""></div>
+                    <div class="btn clear" onclick="onTrash()"><img src="img/ICONS/trash.png" alt=""></div>
                     <div onclick="onIncreaseFont()" class="btn aPlus"><img src="img/ICONS/increase font - icon.png"
                             alt=""></div>
                     <div onclick="onDecreaseFont()" class="btn aMinus"><img src="img/ICONS/decrease font - icon.png"
                             alt=""></div>
-                    <div class="btn align-left"><img src="img/ICONS/align-to-left.png" alt=""></div>
-                    <div class="btn align-center"><img src="img/ICONS/center-text-alignment.png" alt=""></div>
-                    <div class="btn align-right"><img src="img/ICONS/align-to-right.png" alt=""></div>
+                    <div class="btn align-left" onclick="onAlignLeft()"><img src="img/ICONS/align-to-left.png" alt=""></div>
+                    <div class="btn align-center" onclick="onAlignCenter()"><img src="img/ICONS/center-text-alignment.png" alt=""></div>
+                    <div class="btn align-right" onclick="onAlignRight()"><img src="img/ICONS/align-to-right.png" alt=""></div>
                     <div class="btn font"></div>
                     <select class="font" onchange="onSetFont(event,this.value)">
                         <option value="impact">Impact</option>

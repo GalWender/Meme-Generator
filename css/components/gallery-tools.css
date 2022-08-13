@@ -1,7 +1,8 @@
 .gallery-controls-container {
-width: 100%;
-height: 100px;
-background-color: white;
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    flex-direction: row;
 }
 
 .btn.flexible {
@@ -12,7 +13,7 @@ background-color: white;
     border: 1px solid blue;
     margin-top: 10px;
 }
- 
+
 .search-img {
     margin-left: 10px;
     cursor: pointer;
@@ -21,4 +22,20 @@ background-color: white;
 
 .input-search {
     margin-top: 10px;
+}
+
+.more-keywords {
+    margin-top: 10px;
+}
+
+.keywords-container {
+    flex-wrap: wrap;
+    padding-inline-end: 5px;
+}
+
+.keyword {
+    padding-inline-end: 5px;
+}
+.keywords-screen {
+    justify-content: none;
 }

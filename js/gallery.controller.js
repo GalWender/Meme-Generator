@@ -12,6 +12,7 @@ function renderGallery() {
 }
 
 function onImgSelect(elImg) {
+    window.scrollTo(0, 0)
     gmemeReset()
     setImg(elImg)
     const elmodalEditor = document.querySelector('.meme-editor-modal')
@@ -19,14 +20,13 @@ function onImgSelect(elImg) {
     const elmodalSaved = document.querySelector('.saved-memes-tab-modal')
     elmodalEditor.classList.remove('hidden')
     renderMeme()
-    let elInput = document.querySelector('[name="text-input"]')
-    // elInput.value = gMeme.lines[gMeme.selectedLineIdx].txt
     elGallery.classList.add('hidden')
     elmodalSaved.classList.add('hidden')
     resizeCanvas()
 }
 
 function toGallery(){
+    window.scrollTo(0, 0)
     gmemeReset()
     const elInput = document.querySelector('[name="text-input"]')
     elInput.value = ''
@@ -47,4 +47,35 @@ function onSetFilter() {
     setFilter(elSearch.value)
     saveFilterToStorage()
     renderGallery()
+}
+
+function onMore() {
+    let elKeywords = document.querySelector('.more-keywords')
+    if ( elKeywords.style.display === 'none') {
+        elKeywords.style.display = 'flex'
+        document.querySelector('.more').innerText = 'less...'
+    } else {
+        elKeywords.style.display = 'none'
+        document.querySelector('.more').innerText = 'more...'
+    }
+}
+
+function onKeyword(elKeyword, keyword) {
+    let style = window.getComputedStyle(elKeyword, null).getPropertyValue('font-size')
+    let currentSize = parseFloat(style)
+    elKeyword.style.fontSize = (currentSize + 10) + 'px'
+    let imgs = setFilter(keyword)
+    renderGallery(imgs)
+}
+
+function renderKeywords() {
+    let keywords = getKeywords()
+    let strHTML = ''
+    for (const key in keywords) {
+        strHTML +=`<div class="keyword" onclick="onKeyword(this, '${key}')">${key}</div>`
+    }
+
+    let elContainer = document.querySelector('.keywords-container')
+    elContainer.innerHTML = strHTML
+    document.querySelector('.more-keywords').style.display = 'none'
 }

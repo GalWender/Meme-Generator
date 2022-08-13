@@ -1,0 +1,10 @@
+.footer {
+    position: absolute;
+    transform: translateY(50vh);
+    margin-top: 80%;
+    /* left: 0; */
+    /* right: 0; */
+    height: 150px;
+    width: 100%;
+    background-color: var(--clrHeader);
+}

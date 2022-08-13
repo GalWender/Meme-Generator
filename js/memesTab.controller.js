@@ -33,5 +33,6 @@ function onSavedMemeClick(elImage) {
     elmodalEditor.classList.remove('hidden')
     elGallery.classList.add('hidden')
     elmodalSaved.classList.add('hidden')
+    resizeCanvas()
 }
  

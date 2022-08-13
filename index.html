@@ -26,8 +26,9 @@
     <main class="main-content flex flex-direction-column">
         <section class="gallery-controls-container main-layout">
             <section class="search-container flex justify-center">
-                <input class="input-search" list="keywords" onchange="onSetFilter()" type="text" name="search-input" placeholder="Enter Search Keyword"
-                    name="search"><img onclick="onSetFilter()" class="search-img" width="20px" height="20px" src="img/ICONS/search-icon.png" alt="">
+                <input class="input-search" list="keywords" onchange="onSetFilter()" type="text" name="search-input"
+                    placeholder="Enter Search Keyword" name="search"><img onclick="onSetFilter()" class="search-img"
+                    width="20px" height="20px" src="img/ICONS/search-icon.png" alt="">
                 <datalist id="keywords">
                     <option value="politicians">
                     <option value="angry">
@@ -88,7 +89,11 @@
                         <img class="fill-background-img" src="img/ICONS/paint-board-and-brush.png" alt="">
                         <input type="color" name="fill-color" class="btn fill-color">
                     </div>
-                    <div class="btn emojis"></div>
+                    <button class="emoji emoji1" onclick="onAddSticker('🤣')">🤣</button>
+                    <button class="emoji emoji2" onclick="onAddSticker('😂')">😂</button>
+                    <button class="emoji emoji3" onclick="onAddSticker('😅')">😅</button>
+                    <button class="emoji emoji4" onclick="onAddSticker('😁')">😁</button>
+                    <button class="emoji emoji5" onclick="onAddSticker('😎')">😎</button>
                     <button class="btn save-meme" onclick="saveMemesToStorage()">Save</button>
                 </div>
             </section>
@@ -96,6 +101,10 @@
         <div class="gallery-container grid-container">
         </div>
     </main>
+    <footer class="footer main-layout flex align-center">
+        <img class="logo" src="img/LOGO/LOGO.png" alt="">
+    </footer>
+
     <script src="js/services/memesTab.service.js"></script>
     <script src="js/services/upload-service.js"></script>
     <script src="js/services/storage.service.js"></script>

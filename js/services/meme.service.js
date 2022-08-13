@@ -37,7 +37,7 @@ let gMeme = {
             fill: 'white',
             font: 'impact',
             pos: null,
-            isDragging: false,
+            isDrag: false,
             lineWidth: 0,
             lineHeight: 0
         }]
@@ -70,8 +70,23 @@ function createLine() {
         stroke: 'black',
         fill: 'white',
         font: 'Impact',
-        pos: { x: (gElCanvas.width / 2), y: (gElCanvas.height) },
-        isDragging: false,
+        pos: { x: (gElCanvas.width / 2), y: gElCanvas.height },
+        isDrag: false,
+        lineWidth: 0,
+        lineHeight: 0
+    }
+}
+
+function createStickerLine(stiker) {
+    return {
+        txt: stiker,
+        size: 50,
+        align: 'center',
+        stroke: 'black',
+        fill: 'white',
+        font: 'Impact',
+        pos: { x: (gElCanvas.width / 2), y: gElCanvas.height / 2 },
+        isDrag: false,
         lineWidth: 0,
         lineHeight: 0
     }
@@ -115,6 +130,12 @@ function addLine() {
     elInput.value = gMeme.lines[gMeme.selectedLineIdx].txt
 }
 
+function addSticker(stiker) {
+    gMeme.selectedLineIdx++
+    let line = createStickerLine(stiker)
+    gMeme.lines.push(line)
+}
+
 function switchLine() {
     let elInput = document.querySelector('[name="text-input"]')
     if (gMeme.selectedLineIdx === 0) {
@@ -127,16 +148,16 @@ function switchLine() {
 function measureLineWidth() {
     gCtx.font = `${gMeme.lines[gMeme.selectedLineIdx].size}px ${gMeme.lines[gMeme.selectedLineIdx].font}`
     let txtWidth = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt)
-    console.log(txtWidth.width)
-    return txtWidth.width + 20
+    console.log('text width', txtWidth.width)
+    return txtWidth.width
 }
 
 function measureLineHeight() {
     gCtx.font = `${gMeme.lines[gMeme.selectedLineIdx].size}px ${gMeme.lines[gMeme.selectedLineIdx].font}`
     let txtHeight = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt)
-    console.log(gCtx.font)
-    console.log(txtHeight.fontBoundingBoxAscent - txtHeight.fontBoundingBoxDescent)
-    return (txtHeight.fontBoundingBoxAscent - txtHeight.fontBoundingBoxDescent) + 20
+
+    console.log('height', txtHeight.fontBoundingBoxAscent - txtHeight.fontBoundingBoxDescent)
+    return (txtHeight.fontBoundingBoxAscent - txtHeight.fontBoundingBoxDescent)
 }
 
 function saveMemesToStorage() {
@@ -175,8 +196,28 @@ function gmemeReset() {
         fill: 'white',
         font: 'impact',
         pos: null,
-        isDragging: false,
+        isDrag: false,
         lineWidth: 0,
         lineHeight: 0
     }]
+}
+//............
+function isClicked(clickedPos) {
+    const pos = gMeme.lines[gMeme.selectedLineIdx].pos
+    let { lineWidth, lineHeight } = gMeme.lines[gMeme.selectedLineIdx]
+    lineWidth = lineWidth / 2
+    lineHeight = lineHeight / 2
+    if (clickedPos.x >= pos.x - lineWidth && clickedPos.x <= pos.x + lineWidth && clickedPos.y >= pos.y - lineHeight && clickedPos.y <= pos.y + lineHeight) {
+        // gMeme.selectedLineIdx = i
+        return true
+    }
+}
+
+function setDrag(isDrag) {
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
+}
+
+function moveLine(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
+    gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
 }

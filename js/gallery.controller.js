@@ -12,7 +12,6 @@ function renderGallery() {
 }
 
 function onImgSelect(elImg) {
-    console.log('gmeme',gMeme)
     gmemeReset()
     setImg(elImg)
     const elmodalEditor = document.querySelector('.meme-editor-modal')
@@ -24,11 +23,10 @@ function onImgSelect(elImg) {
     // elInput.value = gMeme.lines[gMeme.selectedLineIdx].txt
     elGallery.classList.add('hidden')
     elmodalSaved.classList.add('hidden')
-    console.log('gmeme',gMeme)
+    resizeCanvas()
 }
 
 function toGallery(){
-    console.log('gmeme',gMeme)
     gmemeReset()
     const elInput = document.querySelector('[name="text-input"]')
     elInput.value = ''
@@ -38,7 +36,6 @@ function toGallery(){
     elGallery.classList.remove('hidden')
     elmodalEditor.classList.add('hidden')
     elmodalSaved.classList.add('hidden')
-    console.log('gmeme',gMeme)
 }
 
 function onFlexible() {

@@ -19,7 +19,7 @@ function drawText(text, x, y, colorFill, colorStroke, font, size, align) {
 function drawRect(x, y, width, height) {
     gCtx.beginPath();
     gCtx.lineWidth = 1;
-    gCtx.rect(x, y, width, height);
+    gCtx.rect(x, y, width,height);
     // gCtx.setLineDash([4, 2]);
     gCtx.strokeStyle = 'gray';
     gCtx.stroke();
@@ -118,7 +118,7 @@ function stopRefresh(ev) {
 function drawBorder(x, y, xEnd, yEnd) {
     gCtx.beginPath();
     gCtx.lineWidth = 1;
-    gCtx.setLineDash([10,20])
+    // gCtx.setLineDash([10,20])
     gCtx.moveTo(x, y);
     gCtx.lineTo(xEnd, y);
     gCtx.moveTo(xEnd,y)

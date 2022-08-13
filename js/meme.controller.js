@@ -11,6 +11,12 @@ function init() {
     gElCanvas = document.querySelector('#canvas');
     gCtx = gElCanvas.getContext('2d');
     gStartPos = { x: gElCanvas.width / 2, y: gElCanvas.height / 5 }
+    addListeners()
+}
+
+function addListeners() {
+    addMouseListeners()
+    addTouchListeners()
 }
 
 
@@ -27,15 +33,28 @@ function addTouchListeners() {
 }
 
 function onDown(ev) {
-
+    const pos = getEvPos(ev)
+    // { x: 15, y : 15 }
+    if (!isClicked(pos)) return
+    setDrag(true)
+    gStartPos = pos
+    document.body.style.cursor = 'grabbing'
 }
 
 function onMove(ev) {
-
+    const line = gMeme.lines[gMeme.selectedLineIdx];
+    if (!line.isDrag) return
+    const pos = getEvPos(ev)
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+    moveLine(dx, dy)
+    gStartPos = pos
+    renderMeme()
 }
 
 function onUp() {
-
+    setDrag(false)
+    document.body.style.cursor = 'grab'
 }
 
 
@@ -46,19 +65,17 @@ function renderMeme() {
     let img = new Image()
     let meme = getMeme()
     if (!meme) return
-    console.log('gmeme from render',gMeme)
     img.src = gImgs.find(obj => obj.id === meme.selectedImgId).url
     if (gMeme.lines[gMeme.selectedLineIdx].pos === null) {
-        gMeme.lines[gMeme.selectedLineIdx].pos = { x: gElCanvas.width / 2, y: gElCanvas.height / 5 }
+        gMeme.lines[gMeme.selectedLineIdx].pos = { x: gElCanvas.width / 2, y: gElCanvas.height / 7 }
     }
     img.onload = () => {
         drawImg(gMeme.selectedImgId) //img,x,y,xend,yend
         gMeme.lines.forEach((line) => drawText(line.txt, line.pos.x, line.pos.y, line.fill, line.stroke, line.font, line.size, line.align))
         gMeme.lines[gMeme.selectedLineIdx].lineWidth = measureLineWidth()
         gMeme.lines[gMeme.selectedLineIdx].lineHeight = measureLineHeight()
-        drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - gMeme.lines[gMeme.selectedLineIdx].lineWidth / 2, gMeme.lines[gMeme.selectedLineIdx].pos.y - gMeme.lines[gMeme.selectedLineIdx].lineHeight + 10, gMeme.lines[gMeme.selectedLineIdx].lineWidth, gMeme.lines[gMeme.selectedLineIdx].lineHeight)
+        drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].lineWidth / 2)-20, gMeme.lines[gMeme.selectedLineIdx].pos.y - gMeme.lines[gMeme.selectedLineIdx].lineHeight /2-30, gMeme.lines[gMeme.selectedLineIdx].lineWidth +30, gMeme.lines[gMeme.selectedLineIdx].lineHeight+30)
     }
-    window.addEventListener("resize", resizeCanvas())
 }
 
 function onRenderInputText() {
@@ -99,6 +116,11 @@ function onDecreaseFont() {
 
 function onAddLine() {
     addLine()
+    renderMeme()
+}
+
+function onAddSticker(stiker) {
+    addSticker(stiker)
     renderMeme()
 }
 

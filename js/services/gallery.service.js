@@ -97,3 +97,4 @@ function saveFilterToStorage() {
     saveToStorage('filter', gFilterBy)
 }
 
+

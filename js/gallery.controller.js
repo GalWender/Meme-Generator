@@ -66,6 +66,7 @@ function onKeyword(elKeyword, keyword) {
     elKeyword.style.fontSize = (currentSize + 10) + 'px'
     let imgs = setFilter(keyword)
     renderGallery(imgs)
+    saveKeywordsToStorage()
 }
 
 function renderKeywords() {

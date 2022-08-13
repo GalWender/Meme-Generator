@@ -262,5 +262,14 @@ function mapKeywords() {
     return res
 }
 
+function saveKeywordsToStorage() {
+    saveToStorage('keywords',gKeywords)
+}
 
+function loadKeywordsToStorage(){
+    let keywords = loadFromStorage('keywords')
+    if(keywords){
+        gKeywords = keywords
+    }
+}
 

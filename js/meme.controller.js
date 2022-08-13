@@ -7,6 +7,7 @@ let gStartPos
 let gSavedEdits = []
 
 function init() {
+    loadKeywordsToStorage()
     renderKeywords()
     renderGallery()
     gElCanvas = document.querySelector('#canvas')

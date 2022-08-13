@@ -1,7 +1,7 @@
 'use strict'
 
 function renderGallery() {
-    let imgs = gImgs
+    let imgs = getImgsForDisplay()
     let strHTMLs = imgs.map(img => {
         return `
         <img id="${img.id}" class="img img${img.id}" onclick="onImgSelect(this)" src="${img.url}" alt="">
@@ -41,10 +41,13 @@ function toGallery(){
     console.log('gmeme',gMeme)
 }
 
-function onSearchByKeywords() {
-
-}
-
 function onFlexible() {
     flexible()
+}
+
+function onSetFilter() {
+    const elSearch = document.querySelector('[name="search-input"]')
+    setFilter(elSearch.value)
+    saveFilterToStorage()
+    renderGallery()
 }

@@ -10,4 +10,15 @@ background-color: white;
     border-radius: 2em;
     background-color: rgb(79, 79, 233);
     border: 1px solid blue;
+    margin-top: 10px;
+}
+ 
+.search-img {
+    margin-left: 10px;
+    cursor: pointer;
+    margin-top: 11px;
+}
+
+.input-search {
+    margin-top: 10px;
 }

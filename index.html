@@ -24,17 +24,33 @@
         </div>
     </header>
     <main class="main-content flex flex-direction-column">
-        <section class="gallery-controls-container">
-            <!-- <input oninput="onSearchByKeywords()"  type="text" placeholder="Enter Search Keyword" name="search"><img src="img/ICONS/search-icon.png" alt=""> -->
-
-            <!--  -->
+        <section class="gallery-controls-container main-layout">
+            <section class="search-container flex justify-center">
+                <input class="input-search" list="keywords" onchange="onSetFilter()" type="text" name="search-input" placeholder="Enter Search Keyword"
+                    name="search"><img onclick="onSetFilter()" class="search-img" width="20px" height="20px" src="img/ICONS/search-icon.png" alt="">
+                <datalist id="keywords">
+                    <option value="politicians">
+                    <option value="angry">
+                    <option value="sweet">
+                    <option value="animals">
+                    <option value="baby">
+                    <option value="excited">
+                    <option value="surprised">
+                    <option value="conspiracy">
+                    <option value="fight">
+                    <option value="tv">
+                    <option value="movie">
+                    <option value="happy">
+                    <option value="explain">
+                    <option value="celeb">
+                    <option value="righteous">
+                </datalist>
+            </section>
             <button class="btn flexible" onclick="onFlexible()">Im Flexible</button>
         </section>
         <div class="saved-memes-tab-modal hidden">
             <div class="saved-memes-grid-container">
-
             </div>
-
         </div>
         <div class="meme-editor-modal flex hidden">
             <section class="meme">
@@ -44,16 +60,18 @@
             </section>
             <section class="meme-controls flex flex-direction-column align-center">
                 <form class="text-input-form" onsubmit="stopRefresh(event)">
-                <input oninput="onRenderInputText(event,this)" id="text-input" type="text" name="text-input"
-                    class="text-input" placeholder="New Text">
+                    <input oninput="onRenderInputText(event,this)" id="text-input" type="text" name="text-input"
+                        class="text-input" placeholder="New Text">
                 </form>
                 <div class="grid-container-controls">
                     <div onclick="onSwichLine()" class="btn switch-line"><img
                             src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></div>
                     <div onclick="onAddLine()" class="btn add-line"><img src="img/ICONS/add.png" alt=""></div>
                     <div class="btn clear"><img src="img/ICONS/trash.png" alt=""></div>
-                    <div onclick="onIncreaseFont()" class="btn aPlus"><img src="img/ICONS/increase font - icon.png" alt=""></div>
-                    <div onclick="onDecreaseFont()" class="btn aMinus"><img src="img/ICONS/decrease font - icon.png" alt=""></div>
+                    <div onclick="onIncreaseFont()" class="btn aPlus"><img src="img/ICONS/increase font - icon.png"
+                            alt=""></div>
+                    <div onclick="onDecreaseFont()" class="btn aMinus"><img src="img/ICONS/decrease font - icon.png"
+                            alt=""></div>
                     <div class="btn align-left"><img src="img/ICONS/align-to-left.png" alt=""></div>
                     <div class="btn align-center"><img src="img/ICONS/center-text-alignment.png" alt=""></div>
                     <div class="btn align-right"><img src="img/ICONS/align-to-right.png" alt=""></div>
@@ -71,7 +89,7 @@
                         <input type="color" name="fill-color" class="btn fill-color">
                     </div>
                     <div class="btn emojis"></div>
-                    <button onclick="saveMemesToStorage()">Save</button>
+                    <button class="btn save-meme" onclick="saveMemesToStorage()">Save</button>
                 </div>
             </section>
         </div>

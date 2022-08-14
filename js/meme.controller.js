@@ -68,11 +68,13 @@ function renderMeme() {
     let img = new Image()
     let meme = getMeme()
     if (!meme) return
-    img.src = gImgs.find(obj => obj.id === meme.selectedImgId).url
+    let objImg = gImgs.find(obj => obj.id === meme.selectedImgId)
+    img.src = objImg.url
     if (gMeme.lines[gMeme.selectedLineIdx].pos === null) {
         gMeme.lines[gMeme.selectedLineIdx].pos = { x: gElCanvas.width / 2, y: gElCanvas.height / 7 }
     }
     img.onload = () => {
+        gElCanvas.height = img.height * objImg.size
         drawImg(gMeme.selectedImgId) //img,x,y,xend,yend
         gMeme.lines.forEach((line) => drawText(line.txt, line.pos.x, line.pos.y, line.fill, line.stroke, line.font, line.size, 'center'))
         gMeme.lines[gMeme.selectedLineIdx].lineWidth = measureLineWidth()

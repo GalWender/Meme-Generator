@@ -32,20 +32,37 @@ function clearCanvas() {
 
 // pos for mouse&touch 
 
+// function getEvPos(ev) {
+//     var pos = {
+//         x: ev.offsetX,
+//         y: ev.offsetY
+//     }
+//     if (gTouchEvs.includes(ev.type)) {
+//         ev.preventDefault()
+//         ev = ev.changedTouches[0]
+//         pos = {
+//             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+//             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+//         }
+//     }
+//     return pos;
+// }
+
 function getEvPos(ev) {
+    ev.preventDefault()
     var pos = {
         x: ev.offsetX,
         y: ev.offsetY
     }
-    if (gTouchEvs.includes(ev.type)) {
-        ev.preventDefault()
+    if (['touchstart', 'touchmove', 'touchend'].includes(ev.type)) {
+
         ev = ev.changedTouches[0]
         pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+            x: ev.pageX - ev.target.offsetLeft,
+            y: ev.pageY - ev.target.offsetTop - 50
         }
     }
-    return pos;
+    return pos
 }
 
 // download

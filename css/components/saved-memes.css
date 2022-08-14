@@ -17,14 +17,11 @@
 }
 
 .saved-memes-grid-container { 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(154px, 1fr));
-    justify-content: center;
-    gap: 5px;
+    column-count: 2;
+    gap: 10px;
     margin: 5px;
     margin-top: 10px;
-    margin-bottom: 10px;
-    
+    margin-bottom: 10px;  
 }
 
 .saved-memes-grid-container.img { 

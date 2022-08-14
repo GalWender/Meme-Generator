@@ -1,21 +1,52 @@
-.grid-container { 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(154px, 1fr));
-    gap: 5px;
+.grid-container {
+    column-count: 2;
+    gap: 10px;
     margin: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
-    
 }
 
-.img { 
+.img {
+    border-radius: 00.9em;
     cursor: pointer;
-    object-fit: scale-down;
+    object-fit: cover;
     width: 100%;
-    min-height: 160px;
+    margin-bottom: 5px;
 }
 
 .main-content {
     margin-top: 55px;
     background-color: #e3e3e3;
+}
+
+.img:hover {
+    animation: text-shadow-pop-bottom 0.6s both;
+}
+
+@-webkit-keyframes text-shadow-pop-bottom {
+    0% {
+        text-shadow: 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    100% {
+        text-shadow: 0 1px #555555, 0 2px #555555, 0 3px #555555, 0 4px #555555, 0 5px #555555, 0 6px #555555, 0 7px #555555, 0 8px #555555;
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes text-shadow-pop-bottom {
+    0% {
+        text-shadow: 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    100% {
+        text-shadow: 0 1px #555555, 0 2px #555555, 0 3px #555555, 0 4px #555555, 0 5px #555555, 0 6px #555555, 0 7px #555555, 0 8px #555555;
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
 }

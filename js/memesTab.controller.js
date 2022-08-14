@@ -1,6 +1,7 @@
 'use strict'
 
 function toSavedMemes() {
+    toggleMenu()
     const elmodalEditor = document.querySelector('.meme-editor-modal')
     const elGallery = document.querySelector('.gallery-container')
     const elmodalSaved = document.querySelector('.saved-memes-tab-modal')

@@ -1,9 +1,7 @@
 'use strict'
 let flxibleText = ['i like falafel!', 'god damn!', 'jiggle wiggle', 'oh snap', 'hehe that dog', 'LMAO', 'frogy wogy', 'what are those', 'hop hop', 'funny buns', 'LOL', 'your mum', 'oew pew', 'penny weeny', 'loco coco']
 let gFilterBy = ''
-function searchByKeywords() {
 
-}
 
 function flexible() {
     window.scrollTo(0, 0)
@@ -96,5 +94,7 @@ function getImgsForDisplay() {
 function saveFilterToStorage() {
     saveToStorage('filter', gFilterBy)
 }
+
+
 
 

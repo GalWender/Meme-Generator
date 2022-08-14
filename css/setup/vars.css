@@ -1,9 +1,4 @@
 :root {
     /* color palete */
     --clrHeader: #ff7f00;
-
-    --large: 1000px;
-    --medium: 850px;
-    --small: 600px;
-    --mobile: 350px;
 }

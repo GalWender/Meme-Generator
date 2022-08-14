@@ -1,24 +1,26 @@
 'use strict'
 
+const xxxs = 0.58, xxs = 0.66, xs = 0.76, xm = 0.8, xxm = 0.84, xl = 0.87, xxl = 0.6
+
 let gImgs = [
-    { id: 1, url: 'img/meme-imgs/1.jpg', keywords: ['politicians', 'angry'] },
-    { id: 2, url: 'img/meme-imgs/2.jpg', keywords: ['animals', 'sweet'] },
-    { id: 3, url: 'img/meme-imgs/3.jpg', keywords: ['animals', 'sweet', 'sleep', 'baby'] },
-    { id: 4, url: 'img/meme-imgs/4.jpg', keywords: ['animals', 'sleep'] },
-    { id: 5, url: 'img/meme-imgs/5.jpg', keywords: ['baby', 'angry'] },
-    { id: 6, url: 'img/meme-imgs/6.jpg', keywords: ['happy', 'excited', 'tv'] },
-    { id: 7, url: 'img/meme-imgs/7.jpg', keywords: ['baby', 'surprised'] },
-    { id: 8, url: 'img/meme-imgs/8.jpg', keywords: ['happy', 'excited'] },
-    { id: 9, url: 'img/meme-imgs/9.jpg', keywords: ['happy', 'excited', 'conspiracy'] },
-    { id: 10, url: 'img/meme-imgs/10.jpg', keywords: ['happy', 'politicians'] },
-    { id: 11, url: 'img/meme-imgs/11.jpg', keywords: ['angry', 'fight'] },
-    { id: 12, url: 'img/meme-imgs/12.jpg', keywords: ['explain', 'tv', 'righteous', 'celeb'] },
-    { id: 13, url: 'img/meme-imgs/13.jpg', keywords: ['celeb', 'happy'] },
-    { id: 14, url: 'img/meme-imgs/14.jpg', keywords: ['celeb', 'tv', 'movie', 'surprised'] },
-    { id: 15, url: 'img/meme-imgs/15.jpg', keywords: ['celeb', 'tv', 'movie', 'explain'] },
-    { id: 16, url: 'img/meme-imgs/16.jpg', keywords: ['celeb', 'tv', 'movie', 'happy', 'excited'] },
-    { id: 17, url: 'img/meme-imgs/17.jpg', keywords: ['politicians', 'explain'] },
-    { id: 18, url: 'img/meme-imgs/18.jpg', keywords: ['tv', 'explain', 'surprised'] },
+    { id: 1, url: 'img/meme-imgs/1.jpg', keywords: ['politicians', 'angry'], size: xxxs },
+    { id: 2, url: 'img/meme-imgs/2.jpg', keywords: ['animals', 'sweet'], size: xxs },
+    { id: 3, url: 'img/meme-imgs/3.jpg', keywords: ['animals', 'sweet', 'sleep', 'baby'], size: xxl },
+    { id: 4, url: 'img/meme-imgs/4.jpg', keywords: ['animals', 'sleep'], size: xxs },
+    { id: 5, url: 'img/meme-imgs/5.jpg', keywords: ['baby', 'angry'], size: xxs },
+    { id: 6, url: 'img/meme-imgs/6.jpg', keywords: ['happy', 'excited', 'tv'], size: xl },
+    { id: 7, url: 'img/meme-imgs/7.jpg', keywords: ['baby', 'surprised'], size: xs },
+    { id: 8, url: 'img/meme-imgs/8.jpg', keywords: ['happy', 'excited'], size: xxl },
+    { id: 9, url: 'img/meme-imgs/9.jpg', keywords: ['happy', 'excited', 'conspiracy'], size: xxs },
+    { id: 10, url: 'img/meme-imgs/10.jpg', keywords: ['happy', 'politicians'], size: xxm },
+    { id: 11, url: 'img/meme-imgs/11.jpg', keywords: ['angry', 'fight'], size: xs },
+    { id: 12, url: 'img/meme-imgs/12.jpg', keywords: ['explain', 'tv', 'righteous', 'celeb'], size: xm },
+    { id: 13, url: 'img/meme-imgs/13.jpg', keywords: ['celeb', 'happy'], size: xxs },
+    { id: 14, url: 'img/meme-imgs/14.jpg', keywords: ['celeb', 'tv', 'movie', 'surprised'], size: xxm },
+    { id: 15, url: 'img/meme-imgs/15.jpg', keywords: ['celeb', 'tv', 'movie', 'explain'], size: xxs },
+    { id: 16, url: 'img/meme-imgs/16.jpg', keywords: ['celeb', 'tv', 'movie', 'happy', 'excited'], size: xm },
+    { id: 17, url: 'img/meme-imgs/17.jpg', keywords: ['politicians', 'explain'], size: xm },
+    { id: 18, url: 'img/meme-imgs/18.jpg', keywords: ['tv', 'explain', 'surprised'], size: xs },
 ]
 
 let gKeywords = mapKeywords(gImgs)
@@ -201,8 +203,7 @@ function isClicked(clickedPos, lineIdx) {
     let { lineWidth, lineHeight } = gMeme.lines[lineIdx]
     lineWidth = lineWidth / 2
     lineHeight = lineHeight / 2
-    if (clickedPos.x >= pos.x - lineWidth && clickedPos.x <= pos.x + lineWidth && clickedPos.y >= pos.y - lineHeight && clickedPos.y <= pos.y + lineHeight) {
-        // gMeme.selectedLineIdx = i
+    if (clickedPos.x >= pos.x - lineWidth && clickedPos.x <= pos.x + lineWidth && clickedPos.y >= pos.y - lineHeight *2.7 && clickedPos.y <= pos.y + lineHeight) {
         return true
     }
 }
@@ -216,16 +217,17 @@ function moveLine(dx, dy) {
     gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
 }
 
+
 function checkSelectedLineClick(pos) {
     gMeme.lines.forEach((line, idx) => {
         if (isClicked(pos, idx)) {
-            gMeme.selectedLineIdx = idx
+            gMeme.selectedLineIdx = idx //use find index to get idx
         }
     })
 }
 
 function clearLine() {
-    gMeme.lines[gMeme.selectedLineIdx].txt = ''
+    gMeme.lines[gMeme.selectedLineIdx].txt = '' // 
 }
 
 function addAlign(align) {
@@ -238,9 +240,8 @@ function addAlign(align) {
             gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width - 100
             break
         case 'right':
-            gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width -240
+            gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width - 240 //try to use canvas size to measure
             break
-
     }
 }
 
@@ -263,13 +264,19 @@ function mapKeywords() {
 }
 
 function saveKeywordsToStorage() {
-    saveToStorage('keywords',gKeywords)
+    saveToStorage('keywords', gKeywords)
 }
 
-function loadKeywordsToStorage(){
-    let keywords = loadFromStorage('keywords')
-    if(keywords){
+function updateKeyword(keyword,newSize) {
+    gKeywords[keyword] = newSize
+    saveKeywordsToStorage()
+}
+
+function loadKeywordsToStorage() {
+    const keywords = loadFromStorage('keywords')
+    if (keywords) {
         gKeywords = keywords
     }
+    //add else in first case 
 }
 

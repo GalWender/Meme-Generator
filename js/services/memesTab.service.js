@@ -1,6 +1,7 @@
 'use strict'
 
 function savedMemeClick(elImage) {
+    // resizeCanvas()
     let memesEdit = loadFromStorage('memesEdit')
     gMeme.selectedImgId = +elImage.id
     memesEdit.forEach(edit => {
@@ -13,8 +14,11 @@ function savedMemeClick(elImage) {
     })
     let img = new Image()
     img.src = elImage.src
-    console.log(img.src)
     img.onload = () => {
+        gElCanvas.height = img.height
+        gElCanvas.width = img.width
         drawImgFromSaved(elImage)
     }
 }
+
+

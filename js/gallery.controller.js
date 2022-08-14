@@ -51,6 +51,8 @@ function onSetFilter() {
 }
 
 function onMore() {
+    const elgalleryControls = document.querySelector('.gallery-controls-container')
+    elgalleryControls.classList.toggle('more-keywords-height')
     let elKeywords = document.querySelector('.more-keywords')
     if (elKeywords.style.display === 'none') {
         elKeywords.style.display = 'flex'
@@ -62,9 +64,12 @@ function onMore() {
 }
 
 function onKeyword(elKeyword, keyword) {
+    const elSearch = document.querySelector('[name="search-input"]')
+    elSearch.value = keyword
     let style = window.getComputedStyle(elKeyword, null).getPropertyValue('font-size')
     let currentSize = parseFloat(style)
-    const newSize = currentSize + 10
+    if(currentSize>40)return
+        const newSize = currentSize + 10
     elKeyword.style.fontSize = (newSize) + 'px'
     let imgs = setFilter(keyword)
     updateKeyword(keyword, newSize)

@@ -4,6 +4,7 @@ let gFilterBy = ''
 
 
 function flexible() {
+    gStartPos = { x: gElCanvas.width / 2, y: gElCanvas.height - gElCanvas.height/2  }
     window.scrollTo(0, 0)
     setImg(getRandomImg())
     const elmodalEditor = document.querySelector('.meme-editor-modal')

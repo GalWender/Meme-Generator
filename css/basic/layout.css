@@ -1,6 +1,5 @@
 
 .main-layout>* {
-    /* flex-direction: row; */
     justify-content:space-between;
 }
 

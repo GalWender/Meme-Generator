@@ -4,7 +4,7 @@ const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 let gElCanvas
 let gCtx
 let gStartPos
-let gSavedEdits = []
+
 
 function init() {
     loadKeywordsToStorage()
@@ -12,7 +12,7 @@ function init() {
     renderGallery()
     gElCanvas = document.querySelector('#canvas')
     gCtx = gElCanvas.getContext('2d')
-    gStartPos = { x: gElCanvas.width / 2, y: gElCanvas.height / 5 }
+    gStartPos = null
     addListeners()
 }
 
@@ -60,21 +60,17 @@ function onUp() {
     document.body.style.cursor = 'auto'
 }
 
-
-
-
-//gets meme and 
 function renderMeme() {
     let img = new Image()
     let meme = getMeme()
     if (!meme) return
     let objImg = gImgs.find(obj => obj.id === meme.selectedImgId)
     img.src = objImg.url
-    if (gMeme.lines[gMeme.selectedLineIdx].pos === null) {
-        gMeme.lines[gMeme.selectedLineIdx].pos = { x: gElCanvas.width / 2, y: gElCanvas.height / 7 }
-    }
     img.onload = () => {
         gElCanvas.height = img.height * objImg.size
+        if (gMeme.lines[gMeme.selectedLineIdx].pos === null) {
+            gMeme.lines[gMeme.selectedLineIdx].pos = { x: gElCanvas.width / 2, y: 50}
+        }
         drawImg(gMeme.selectedImgId) //img,x,y,xend,yend
         gMeme.lines.forEach((line) => drawText(line.txt, line.pos.x, line.pos.y, line.fill, line.stroke, line.font, line.size, 'center'))
         gMeme.lines[gMeme.selectedLineIdx].lineWidth = measureLineWidth()
@@ -145,18 +141,9 @@ function onSwichLine() {
     renderMeme()
 }
 
-function onAlignLeft() {
-    addAlign('right')
-    renderMeme()
-}
-
-function onAlignCenter() {
-    addAlign('center')
-    renderMeme()
-}
-
-function onAlignRight() {
-    addAlign('left')
+function onAlign(align) {
+    addAlign(align)
+    console.log(gMeme.lines[gMeme.selectedLineIdx].pos.x)
     renderMeme()
 }
 

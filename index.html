@@ -17,7 +17,6 @@
                 <ul class="main-nav-list flex clean-list">
                     <li><a class="flex align-center justify-center" onclick="toGallery()">Gallery</a></li>
                     <li><a class="flex align-center justify-center" onclick="toSavedMemes()">Memes</a></li>
-                    <li><a class="flex align-center justify-center" href="#">About</a></li>
                 </ul>
             </nav>
             <button class="toggle-menu" onclick="toggleMenu()">☰</button>
@@ -48,7 +47,7 @@
                 </datalist>
             </section>
             <button class="btn flexible" onclick="onFlexible()">Im Flexible</button>
-            <div class="keywords-screen flex">
+            <div class="keywords-screen">
                 <span class="keyword" onclick="onKeyword(this, 'politicians')">politicians</span>
                 <span class="keyword" onclick="onKeyword(this, 'happy')">happy</span>
                 <span class="keyword" onclick="onKeyword(this, 'sweet')">sweet</span>
@@ -72,7 +71,7 @@
             <section class="meme-controls flex flex-direction-column align-center">
                 <form class="text-input-form" onsubmit="stopRefresh(event)">
                     <input oninput="onRenderInputText(event,this)" id="text-input" type="text" name="text-input"
-                        class="text-input" placeholder="New Text">
+                        class="text-input" placeholder="Top Text">
                 </form>
                 <div class="grid-container-controls">
                     <div onclick="onSwichLine()" class="btn switch-line"><img
@@ -83,9 +82,9 @@
                             alt=""></div>
                     <div onclick="onDecreaseFont()" class="btn aMinus"><img src="img/ICONS/decrease font - icon.png"
                             alt=""></div>
-                    <div class="btn align-left" onclick="onAlignLeft()"><img src="img/ICONS/align-to-left.png" alt=""></div>
-                    <div class="btn align-center" onclick="onAlignCenter()"><img src="img/ICONS/center-text-alignment.png" alt=""></div>
-                    <div class="btn align-right" onclick="onAlignRight()"><img src="img/ICONS/align-to-right.png" alt=""></div>
+                    <div class="btn align-left" onclick="onAlign('left')"><img src="img/ICONS/align-to-left.png" alt=""></div>
+                    <div class="btn align-center" onclick="onAlign('center')"><img src="img/ICONS/center-text-alignment.png" alt=""></div>
+                    <div class="btn align-right" onclick="onAlign('right')"><img src="img/ICONS/align-to-right.png" alt=""></div>
                     <div class="btn font"></div>
                     <select class="font" onchange="onSetFont(event,this.value)">
                         <option value="impact">Impact</option>
@@ -108,7 +107,6 @@
                     <form class="btn btn-share flex align-items justify-content" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                         <input name="img" id="imgData" type="hidden" />
                         <button class="share-meme share-container clean-list" type="submit">Publish</button>
-                        <!-- <span class="share-container"></span> -->
                     </form>
                     <button class="download-meme"><a href="" class="btn download-meme" onclick="downloadCanvas(this)">Download</a></button>
 
@@ -118,9 +116,9 @@
         <div class="gallery-container grid-container">
         </div>
     </main>
-    <footer class="footer main-layout flex align-center">
+    <div class="footer main-layout flex align-center">
         <img class="logo" src="img/LOGO/LOGO.png" alt="">
-    </footer>
+    </div>
 
     <script src="js/services/memesTab.service.js"></script>
     <script src="js/services/upload-service.js"></script>

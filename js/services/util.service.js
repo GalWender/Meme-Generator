@@ -14,6 +14,7 @@ function drawText(text, x, y, colorFill, colorStroke, font, size, align) {
     gCtx.textAlign = align;
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
+   
 }
 
 function drawRect(x, y, width, height) {
@@ -29,24 +30,6 @@ function drawRect(x, y, width, height) {
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
-
-// pos for mouse&touch 
-
-// function getEvPos(ev) {
-//     var pos = {
-//         x: ev.offsetX,
-//         y: ev.offsetY
-//     }
-//     if (gTouchEvs.includes(ev.type)) {
-//         ev.preventDefault()
-//         ev = ev.changedTouches[0]
-//         pos = {
-//             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-//             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
-//         }
-//     }
-//     return pos;
-// }
 
 function getEvPos(ev) {
     ev.preventDefault()

@@ -63,14 +63,7 @@
         margin-bottom: 25px;
     }
 
-    .footer {
-        position: absolute;
-        transform: translateY(70vh);
-        margin-top: 50%;
-        height: 150px;
-        width: 100%;
-        background-color: var(--clrHeader);
-    }
+
 }
 
 
@@ -79,36 +72,35 @@
 @media (min-width: 880px) {
     .grid-container {
         column-count: 4;
+
     }
 
     .meme-editor-modal {
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
     }
 
     .meme-controls {
-        width: 60%;
-        justify-content: flex-start;
-        margin-top: 30px;
+        width: 500px;
+        justify-content: center;
+        padding-bottom: 5px;
     }
-
-    .meme-canvas-container {}
 
     .meme {
         display: flex;
-        margin-top: 30px;
-        margin-inline-start: 50px;
-    }
+        padding: 20px;
+        background-color: #bfbfbf;
+        border-radius: 0.9em;
+        margin-right: 20px;
+        padding-top: 0;
 
-    .btn {
-        cursor: pointer;
-        width: 60px;
-        height: 60px;
     }
-
+    
     .meme-controls div img {
-        width: 60px;
-        height: 60px;
+        width: 30px;
+        height: 30px;
+
     }
 
     .save-meme {
@@ -120,14 +112,6 @@
         grid-template-rows: repeat(5, 60px);
 
         gap: 20px;
-    }
 
-    .footer {
-        position: absolute;
-        transform: translateY(-20vh);
-        margin-top: 60%;
-        height: 150px;
-        width: 100%;
-        background-color: var(--clrHeader);
     }
 }

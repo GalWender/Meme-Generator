@@ -123,7 +123,8 @@ function addLine() {
     gMeme.selectedLineIdx++
     let line = createLine()
     gMeme.lines.push(line)
-    elInput.value = gMeme.lines[gMeme.selectedLineIdx].txt
+    elInput.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
+    elInput.value = ''
 }
 
 function addSticker(stiker) {
@@ -227,7 +228,8 @@ function checkSelectedLineClick(pos) {
 }
 
 function clearLine() {
-    gMeme.lines[gMeme.selectedLineIdx].txt = '' // 
+    gMeme.lines.splice(gMeme.selectedLineIdx,1) 
+    switchLine()
 }
 
 function addAlign(align) {
@@ -237,10 +239,10 @@ function addAlign(align) {
             gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width / 2
             break
         case 'left':
-            gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width - 100
+            gMeme.lines[gMeme.selectedLineIdx].pos.x = 0 + (gElCanvas.width/5)
             break
         case 'right':
-            gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width - 240 //try to use canvas size to measure
+            gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width - (gElCanvas.width/5)
             break
     }
 }
@@ -253,9 +255,9 @@ function mapKeywords() {
     var res = gImgs.reduce(function (obj, currObj) {
         currObj.keywords.forEach(keyword => {
             if (!obj[keyword]) {
-                obj[keyword] = 1
+                obj[keyword] = 20
             } else {
-                obj[keyword]++
+                    obj[keyword]++
             }
         })
         return obj

@@ -4,10 +4,11 @@
 
 body {
     margin: 0;
-    height: 100vh;
     overflow-x: hidden;
     background-color: #e3e3e3;
     font-family: GFSDidot;
+    padding: 0;
+    height: 100%;
 }
 
 a {

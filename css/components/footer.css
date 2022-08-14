@@ -1,10 +1,10 @@
+
 .footer {
-    position: absolute;
-    transform: translateY(60vh);
-    margin-top: 100%;
-    /* left: 0; */
-    /* right: 0; */
+    position: static;
     height: 100px;
+    left: 0;
+    bottom: 0;
     width: 100%;
     background-color: var(--clrHeader);
+    text-align: center;
 }

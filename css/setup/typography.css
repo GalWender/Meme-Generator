@@ -3,3 +3,8 @@
     font-family: GFSDidot;
     src: url(../../fonts/GFSDidot-Regular.ttf);
 }
+
+@font-face {
+    font-family: alumani;
+    src: url(../../fonts/AlumniSansCollegiateOne-Regular.ttf);
+}

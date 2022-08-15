@@ -62,8 +62,9 @@
             <div class="saved-memes-grid-container">
             </div>
         </div>
-        <div class="meme-editor-modal flex hidden">
-            <section class="meme">
+        <div class="meme-editor-modal flex hidden main-layout">
+
+            <section class="meme main">
                 <div class="meme-canvas-container">
                     <canvas id="canvas" height="400" width="400"></canvas>
                 </div>
@@ -82,9 +83,12 @@
                             alt=""></div>
                     <div onclick="onDecreaseFont()" class="btn aMinus"><img src="img/ICONS/decrease font - icon.png"
                             alt=""></div>
-                    <div class="btn align-left" onclick="onAlign('left')"><img src="img/ICONS/align-to-left.png" alt=""></div>
-                    <div class="btn align-center" onclick="onAlign('center')"><img src="img/ICONS/center-text-alignment.png" alt=""></div>
-                    <div class="btn align-right" onclick="onAlign('right')"><img src="img/ICONS/align-to-right.png" alt=""></div>
+                    <div class="btn align-left" onclick="onAlign('left')"><img src="img/ICONS/align-to-left.png" alt="">
+                    </div>
+                    <div class="btn align-center" onclick="onAlign('center')"><img
+                            src="img/ICONS/center-text-alignment.png" alt=""></div>
+                    <div class="btn align-right" onclick="onAlign('right')"><img src="img/ICONS/align-to-right.png"
+                            alt=""></div>
                     <div class="btn font"></div>
                     <select class="font" onchange="onSetFont(event,this.value)">
                         <option value="impact">Impact</option>
@@ -105,14 +109,17 @@
                     <button class="emoji emoji4" onclick="onAddSticker('😁')">😁</button>
                     <button class="emoji emoji5" onclick="onAddSticker('😎')">😎</button>
                     <button class="btn save-meme" onclick="saveMemesToStorage()">Save</button>
-                    <form class="btn btn-share flex align-items justify-content" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <form class="btn btn-share flex align-items justify-content" action="" method="POST"
+                        enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                         <input name="img" id="imgData" type="hidden" />
                         <button class="share-meme share-container clean-list" type="submit">Publish</button>
                     </form>
-                    <button class="download-meme"><a href="" class="btn download-meme" onclick="downloadCanvas(this)">Download</a></button>
+                    <button class="download-meme"><a href="" class="btn download-meme"
+                            onclick="downloadCanvas(this)">Download</a></button>
 
                 </div>
             </section>
+
         </div>
         <div class="gallery-container grid-container">
         </div>

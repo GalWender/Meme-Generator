@@ -178,7 +178,7 @@ function saveMemesToStorage() {
             saveToStorage('memesEdit', [gMeme])
         }
         toSavedMemes()  
-    }, 500);
+    }, 800);
 }
 
 function downloadCanvas(elLink) {

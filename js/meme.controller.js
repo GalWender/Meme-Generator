@@ -69,7 +69,7 @@ function renderMeme() {
     img.onload = () => {
         gElCanvas.height = img.height * objImg.size
         if (gMeme.lines[gMeme.selectedLineIdx].pos === null) {
-            gMeme.lines[gMeme.selectedLineIdx].pos = { x: gElCanvas.width / 2, y: 50}
+            gMeme.lines[gMeme.selectedLineIdx].pos = { x: gElCanvas.width / 2, y: 50 }
         }
         drawImg(gMeme.selectedImgId) //img,x,y,xend,yend
         gMeme.lines.forEach((line) => drawText(line.txt, line.pos.x, line.pos.y, line.fill, line.stroke, line.font, line.size, 'center'))
@@ -86,7 +86,26 @@ function renderMeme() {
                 drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].lineWidth / 2) - 15, gMeme.lines[gMeme.selectedLineIdx].pos.y - gMeme.lines[gMeme.selectedLineIdx].lineHeight / 2 - 30, gMeme.lines[gMeme.selectedLineIdx].lineWidth + 30, gMeme.lines[gMeme.selectedLineIdx].lineHeight + 30)
                 break;
         }
-        
+
+    }
+}
+
+function renderMemeWithoutBorder() {
+    let img = new Image()
+    let meme = getMeme()
+    if (!meme) return
+    let objImg = gImgs.find(obj => obj.id === meme.selectedImgId)
+    img.src = objImg.url
+    img.onload = () => {
+        gElCanvas.height = img.height * objImg.size
+        if (gMeme.lines[gMeme.selectedLineIdx].pos === null) {
+            gMeme.lines[gMeme.selectedLineIdx].pos = { x: gElCanvas.width / 2, y: 50 }
+        }
+        drawImg(gMeme.selectedImgId) //img,x,y,xend,yend
+        gMeme.lines.forEach((line) => drawText(line.txt, line.pos.x, line.pos.y, line.fill, line.stroke, line.font, line.size, 'center'))
+        gMeme.lines[gMeme.selectedLineIdx].lineWidth = measureLineWidth()
+        gMeme.lines[gMeme.selectedLineIdx].lineHeight = measureLineHeight()
+
     }
 }
 

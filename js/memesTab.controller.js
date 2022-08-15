@@ -28,6 +28,7 @@ function renderSavedMemes() {
 
 function onSavedMemeClick(elImage) {
     savedMemeClick(elImage)
+    renderMeme()
     const elmodalEditor = document.querySelector('.meme-editor-modal')
     const elGallery = document.querySelector('.gallery-container')
     const elmodalSaved = document.querySelector('.saved-memes-tab-modal')

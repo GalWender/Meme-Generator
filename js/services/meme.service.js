@@ -158,23 +158,27 @@ function measureLineHeight() {
 }
 
 function saveMemesToStorage() {
-    const data = gElCanvas.toDataURL()
-    let memes = loadFromStorage('memes')
-    if (memes) {
-        memes.push(data)
-        saveToStorage('memes', memes)
-    }
-    else {
-        saveToStorage('memes', [data])
-    }
-    let memesEdit = loadFromStorage('memesEdit')
-    if (memesEdit) {
-        memesEdit.push(gMeme)
-        saveToStorage('memesEdit', memesEdit)
-    }
-    else {
-        saveToStorage('memesEdit', [gMeme])
-    }
+    renderMemeWithoutBorder()
+    setTimeout(() => {
+        const data = gElCanvas.toDataURL()
+        let memes = loadFromStorage('memes')
+        if (memes) {
+            memes.push(data)
+            saveToStorage('memes', memes)
+        }
+        else {
+            saveToStorage('memes', [data])
+        }
+        let memesEdit = loadFromStorage('memesEdit')
+        if (memesEdit) {
+            memesEdit.push(gMeme)
+            saveToStorage('memesEdit', memesEdit)
+        }
+        else {
+            saveToStorage('memesEdit', [gMeme])
+        }
+        toSavedMemes()  
+    }, 500);
 }
 
 function downloadCanvas(elLink) {
